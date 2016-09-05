@@ -32,6 +32,13 @@ config IOSCHED_DEADLINE
 	  a new point in the service tree and doing a batch of IO from there
 	  in case of expiry.
 
+config IOSCHED_ZEN
+ 	tristate "Zen I/O scheduler"
+ 	default y
+ 	---help---
+ 	  FCFS, dispatches are back-inserted, deadlines ensure fairness.
+ 	  Should work best with devices where there is no travel delay.
+
 config IOSCHED_CFQ
 	tristate "CFQ I/O scheduler"
 	default y
@@ -84,6 +91,9 @@ choice
 	config DEFAULT_CFQ
 		bool "CFQ" if IOSCHED_CFQ=y
 
+        config DEFAULT_ZEN
+ 		bool "ZEN" if IOSCHED_ZEN=y
+
 	config DEFAULT_BFQ
 		bool "BFQ" if IOSCHED_BFQ=y
 		help
@@ -105,6 +115,7 @@ config DEFAULT_IOSCHED
 	default "cfq" if DEFAULT_CFQ
 	default "bfq" if DEFAULT_BFQ
 	default "noop" if DEFAULT_NOOP
+        default "zen" if DEFAULT_ZEN
 
 endmenu
 
