@@ -18,8 +18,6 @@ VER="0.1"
 export CROSS_COMPILE=/home/joe/TC/aarch64-linux-android-4.9/bin/aarch64-linux-android-
 export ARCH=arm64
 export SUBARCH=arm64
-export KBUILD_BUILD_USER=INT3NSE
-export KBUILD_BUILD_HOST=kernel
 
 # Paths
 KERNEL_DIR=`pwd`
@@ -28,6 +26,11 @@ KERNEL_DIR=`pwd`
 function clean_all {
 		echo
 		make mrproper
+}
+
+function clean_out {
+                rm -f ../kernel_out/zImage
+                rm -f ../kernel_out/INT3NSE*.zip
 }
 
 function make_kernel {
@@ -58,6 +61,7 @@ do
 case "$cchoice" in
 	y|Y )
 		clean_all
+                clean_out
 		echo
 		echo "All Cleaned now."
 		break
