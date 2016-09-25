@@ -29,8 +29,8 @@ function clean_all {
 }
 
 function clean_out {
-                rm -f ../kernel_out/zImage
-                rm -f ../kernel_out/INT3NSE*.zip
+                rm -f ../out/kernel/Image.gz-dtb
+                rm -f ../out/kernel/INT3NSE*.zip
 }
 
 function make_kernel {
@@ -40,13 +40,12 @@ function make_kernel {
 }
 
 function modules {
-                find ./ -type f -name '*.ko' -exec cp -f {} ../kernel_out/modules/ \;
+                find ./ -type f -name '*.ko' -exec cp -f {} ../out/system/lib/modules/ \;
 }
 
 function zImage {
-                cp -f arch/arm64/boot/Image.gz-dtb ../kernel_out/zImage
-    		ls -l ../kernel_out/zImage
-		cd ../kernel_out
+                cp arch/arm64/boot/Image.gz-dtb ../out/kernel
+		cd ../out
 		zip -r -9 INT3NSEKernel-"$VER".zip * > /dev/null
 }
 
