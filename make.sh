@@ -15,7 +15,7 @@ VER="0.1"
 
 # Vars
 
-export CROSS_COMPILE=/home/joe/TC/aarch64-linux-android-4.9/bin/aarch64-linux-android-
+export CROSS_COMPILE=/home/joe/TC/aarch64-linux-android-6.x-kernel-linaro/bin/aarch64-linux-android-
 export ARCH=arm64
 export SUBARCH=arm64
 
